@@ -15,11 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from myapp import views
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index')
+    #inlcude the app-level urls in the project level urls to map them.
+    path('', include('myapp.urls'))
 ]
+
+# exception handling for 404 not found, debug setted to false.
+handler404 = 'chefsTable.views.handler404'
